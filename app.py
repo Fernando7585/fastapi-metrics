@@ -1,7 +1,18 @@
 from fastapi import FastAPI
 from sklearn.metrics import mean_absolute_error, r2_score
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://redmocaaltama.org",
+        "https://www.redmocaaltama.org",
+    ],
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def read_root():
